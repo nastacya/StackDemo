@@ -1,17 +1,12 @@
 public class StackArray {
-    public int size;
-    public int[] array;
-    public int top_element;
+    private int size;
+    private int[] array;
+    private int top_element;
 
-    public StackArray(int sz) {
+    StackArray(int sz) {
         size = sz;
         array = new int[size];
         top_element = -1;
-    }
-
-    public static void main(String[] args) {
-        StackArray stack = new StackArray(2);
-
     }
 
     public boolean isEmpty() {
@@ -21,22 +16,28 @@ public class StackArray {
     public void pushElement(int value) {
         int nextElement = ++top_element;
         array[nextElement] = value;
-        System.out.println(top_element);
     }
 
     public int peekElement() {
         if (isEmpty()) {
-            return 0;
+            return Integer.parseInt(null);
         } else {
             return array[top_element];
         }
     }
 
-    public int deleteElement() {
+    public int popElement() {
         if (isEmpty()) {
-            return 0;
+            return Integer.parseInt(null);
         } else {
             return array[top_element--];
         }
+    }
+
+    public int arraySize() {
+        if (size < 0) {
+            throw new NegativeArraySizeException();
+        }
+        return size;
     }
 }
