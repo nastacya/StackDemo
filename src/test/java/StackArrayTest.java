@@ -13,6 +13,30 @@ public class StackArrayTest {
 
     }
 
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testStackArrayIsNotOverflown() {
+        StackArray stack = new StackArray(2);
+
+        stack.pushElement(1);
+        stack.pushElement(1);
+        stack.pushElement(1);
+        stack.pushElement(1);
+        stack.pushElement(1);
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void testStackArrayPop() {
+        StackArray stack = new StackArray(2);
+
+        stack.pushElement(1);
+        stack.pushElement(1);
+
+        stack.popElement();
+        stack.popElement();
+        stack.popElement();
+        stack.popElement();
+    }
+
     @Test
     public void testStackWorks() {
         StackArray stack = new StackArray(3);
@@ -29,8 +53,6 @@ public class StackArrayTest {
     @Test(expected = NegativeArraySizeException.class)
     public void testNegativeArraySizeException() {
         StackArray stack = new StackArray(-2);
-        Object o = stack.arraySize();
+        Object o = stack.arrayLength();
     }
-
-
 }

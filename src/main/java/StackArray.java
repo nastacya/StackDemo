@@ -1,43 +1,41 @@
 public class StackArray {
-    private int size;
-    private int[] array;
-    private int top_element;
+    private Integer[] array;
+    private Integer top;
 
     StackArray(int sz) {
-        size = sz;
-        array = new int[size];
-        top_element = -1;
+        if (sz < 0) {
+            throw new NegativeArraySizeException();
+        }
+
+        array = new Integer[sz];
+        top = -1;
     }
 
     public boolean isEmpty() {
-        return (top_element == -1);
+        return (top == -1);
     }
 
     public void pushElement(int value) {
-        int nextElement = ++top_element;
-        array[nextElement] = value;
+        ++top;
+        if (top > array.length - 1) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        array[top] = value;
     }
 
-    public int peekElement() {
-        if (isEmpty()) {
-            return Integer.parseInt(null);
-        } else {
-            return array[top_element];
+    public Integer popElement() {
+        int start = 0;
+
+        if (top < start) {
+            throw new ArrayIndexOutOfBoundsException();
         }
+        int e = array[top];
+        top--;
+        return e;
     }
 
-    public int popElement() {
-        if (isEmpty()) {
-            return Integer.parseInt(null);
-        } else {
-            return array[top_element--];
-        }
+    public Integer arrayLength() {
+        return array.length;
     }
 
-    public int arraySize() {
-        if (size < 0) {
-            throw new NegativeArraySizeException();
-        }
-        return size;
-    }
 }
